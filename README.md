@@ -24,3 +24,21 @@ run `make stop` to stop docker container
 /fleets - list all fleets
 
 /orders - list all fleets that are in service
+
+## `make` targets
+
+`shell` enters the container (runs bash)
+
+`build` - builds the container
+
+`stop` - stops the container
+
+`start` - starts the container
+
+`init_db` - creates db and runs migrations
+
+`logs` - watches server logs
+
+`publish` - copy files from docker container to host (vendor/, composer.*, symphony.lock, phpunit.xml)
+
+`all` - runs `build` `start` `init_db` `test` targets
