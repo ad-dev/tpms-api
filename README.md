@@ -1,10 +1,10 @@
-## Transport Park Management System API
+# Transport Park Management System API
 
-#requirements
+## requirements
 
-`docker` and `make` must be installed to build and run this api
+`docker` and `make` must be installed on host machine to build and run this api
 
-#build, start and run tests
+## build, start and run tests
 
 `make all`
 
@@ -15,7 +15,7 @@ eg.: `HTTP_PORT=8080 make all`
 
 run `make stop` to stop docker container
 
-#API endpoints
+## API endpoints
 
 /drivers - list all drivers
 
