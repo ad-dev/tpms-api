@@ -4,7 +4,7 @@ ifeq ($(HTTP_PORT),) # if HTTP_PORT is not set then use default port
 HTTP_PORT := 8000
 endif
 
-all: build start init_db
+all: build start init_db test
 
 build:
 	docker build --build-arg REPO_NAME=${REPO_NAME} -t ${REPO_NAME} .
@@ -21,6 +21,7 @@ publish:
 	docker cp ${REPO_NAME}:/${REPO_NAME}/composer.json ./composer.json
 	docker cp ${REPO_NAME}:/${REPO_NAME}/composer.lock ./composer.lock
 	docker cp ${REPO_NAME}:/${REPO_NAME}/symfony.lock ./symfony.lock
+	docker cp ${REPO_NAME}:/${REPO_NAME}/phpunit.xml ./phpunit.xml
 
 init_db:
 	docker exec -it ${REPO_NAME} bin/console doctrine:database:create
@@ -31,7 +32,7 @@ init_db:
 
 test:
 	rm -f ./var/test_data.db
+	docker cp ./phpunit.xml ${REPO_NAME}:/${REPO_NAME}/phpunit.xml
 	docker exec -it ${REPO_NAME} bin/console --env=test doctrine:schema:create
 	docker exec -it ${REPO_NAME} bin/console --env=test doctrine:fixtures:load -n
-	docker cp ${REPO_NAME}:/${REPO_NAME}/phpunit.xml ./phpunit.xml
 	docker exec -it ${REPO_NAME} bin/phpunit

@@ -18,6 +18,7 @@ RUN composer require --dev symfony/maker-bundle
 RUN composer require --dev orm-fixtures
 RUN composer require --dev doctrine/doctrine-fixtures-bundle
 RUN composer require --dev fakerphp/faker
+RUN composer require --dev dama/doctrine-test-bundle
 RUN composer install
 COPY ./src/ /${REPO_NAME}/src
 COPY .env /${REPO_NAME}/.env
