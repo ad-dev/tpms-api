@@ -5,7 +5,7 @@
 `docker` and `make` must be installed on host machine to build and run this api
 
 ```
-git clone git@github.com:ad-dev/tpms-api.git
+git clone https://github.com/ad-dev/tpms-api.git
 cd tpms-api
 make
 ```
