@@ -4,11 +4,20 @@
 
 `docker` and `make` must be installed on host machine to build and run this api
 
+```
+git clone git@github.com:ad-dev/tpms-api.git
+cd tpms-api
+make
+```
+(or `HTTP_PORT=8888 make` if different port `8000` is already used on host machine)
+
+see details below:
+
 ## build, start and run tests
 
-`make all`
 
-api server starts on 8000 port, if this port is already used on your local machine you can set env var HTTP_PORT to use different port
+
+api server starts on 8000 port by default, if this port is already used on your local machine you can set env var `HTTP_PORT` to use different port
 
 eg.: `HTTP_PORT=8080 make all`
 
@@ -26,6 +35,8 @@ run `make stop` to stop docker container
 /orders - list all fleets that are in service
 
 ## `make` targets
+
+`all` - executes `build` `start` `init_db` and `test` targets
 
 `shell` enters the container (runs bash)
 
