@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\DriverRepository;
+use App\Service\DriverService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,20 +11,20 @@ use Symfony\Component\Serializer\SerializerInterface;
 class DriversController extends AbstractController
 {
 
-    private DriverRepository $driverRepository;
+    private DriverService $driverService;
     private $serializer;
 
     function __construct(
-        DriverRepository $driverRepository,
+        DriverService $driverService,
         SerializerInterface $serializer,
     ) {
-        $this->driverRepository = $driverRepository;
+        $this->driverService = $driverService;
         $this->serializer = $serializer;
     }
     #[Route('/drivers', name: 'app_drivers')]
     public function index(): JsonResponse
     {
-        $drivers = $this->driverRepository->findAll();
+        $drivers = $this->driverService->getAll();
         return New JsonResponse(
             $this->serializer->serialize($drivers, 'json'),
             200, [], true);
