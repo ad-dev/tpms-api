@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\FleetRepository;
+use App\Service\OrderService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,21 +11,21 @@ use Symfony\Component\Serializer\SerializerInterface;
 class OrdersController extends AbstractController
 {
 
-    private FleetRepository $fleetRepository;
+    private OrderService $orderService;
     private SerializerInterface $serializer;
 
     function __construct(
-        FleetRepository $fleetRepository,
+        OrderService $orderService,
         SerializerInterface $serializer,
     ) {
-        $this->fleetRepository = $fleetRepository;
+        $this->orderService = $orderService;
         $this->serializer = $serializer;
     }
 
     #[Route('/orders', name: 'app_orders')]
     public function index(): JsonResponse
     {
-        $fleets = $this->fleetRepository->getActiveList();
+        $fleets = $this->orderService->getActiveList();
 
         return New JsonResponse(
             $this->serializer->serialize($fleets, 'json'),
