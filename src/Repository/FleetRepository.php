@@ -3,7 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Fleet;
-use App\Model\FleetStatusEnum;
+use App\Enum\FleetStatusEnum;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

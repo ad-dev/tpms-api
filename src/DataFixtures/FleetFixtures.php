@@ -4,7 +4,7 @@ namespace App\DataFixtures;
 use App\Entity\Driver;
 use App\Entity\Trailer;
 use App\Entity\Truck;
-use App\Model\FleetStatusEnum;
+use App\Enum\FleetStatusEnum;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

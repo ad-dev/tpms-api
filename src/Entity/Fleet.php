@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Model\FleetStatusEnum;
+use App\Enum\FleetStatusEnum;
 use App\Repository\FleetRepository;
 use Doctrine\DBAL\Schema\UniqueConstraint;
 use Doctrine\ORM\Mapping as ORM;

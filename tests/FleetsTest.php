@@ -5,7 +5,7 @@ use App\Entity\Driver;
 use App\Entity\Fleet;
 use App\Entity\Trailer;
 use App\Entity\Truck;
-use App\Model\FleetStatusEnum;
+use App\Enum\FleetStatusEnum;
 use App\Repository\FleetRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
