@@ -36,3 +36,7 @@ test:
 	docker exec -it ${REPO_NAME} bin/console --env=test doctrine:schema:create
 	docker exec -it ${REPO_NAME} bin/console --env=test doctrine:fixtures:load -n
 	docker exec -it ${REPO_NAME} bin/phpunit
+
+reset_db:
+	rm -f ./var/data.db
+	rm -f ./migrations/Version*.php
