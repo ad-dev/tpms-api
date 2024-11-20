@@ -48,4 +48,10 @@ class FleetRepository extends ServiceEntityRepository
            ->getQuery()
            ->getResult();
    }
+
+   public function getTotalCount(): int
+   {
+       return $this->createQueryBuilder('f')->select('COUNT(1)')->getQuery()->getSingleScalarResult();
+
+   }
 }

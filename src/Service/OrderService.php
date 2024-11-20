@@ -2,20 +2,20 @@
 
 namespace App\Service;
 
-use App\Repository\FleetRepository;
+use App\Repository\OrderRepository;
 
 class OrderService
 {
-    private FleetRepository $fleetRepository;
+    private OrderRepository $orderRepository;
 
     function __construct(
-        FleetRepository $fleetRepository,
+        OrderRepository $orderRepository,
     ) {
-        $this->fleetRepository = $fleetRepository;
+        $this->orderRepository = $orderRepository;
     }
 
     public function getActiveList(): array
     {
-        return $this->fleetRepository->getActiveList();
+        return $this->orderRepository->getActiveList();
     }
 }

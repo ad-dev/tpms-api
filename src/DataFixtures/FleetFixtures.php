@@ -96,16 +96,6 @@ class FleetFixtures extends Fixture implements DependentFixtureInterface
                 $fleet->setStatus($randomStatus);
             }
 
-            $fleetsTable->addRow(
-                [
-                    isset($truck) ? $truck->getPlateNo() :"null",
-                    isset($trailer) ? $trailer->getPlateNo() :"null",
-                    isset($firstDriver) ? $firstDriver->getName() :"null",
-                    isset($secondDriver) ? $secondDriver->getLastName() :"null",
-                    $randomStatus->name,
-                ]
-            );
-
             $this->entityManager->beginTransaction();
 
             try {
@@ -113,13 +103,24 @@ class FleetFixtures extends Fixture implements DependentFixtureInterface
                 $this->entityManager->flush();
                 $this->entityManager->commit();
 
-            } catch (\Exception $e) { // if record insert fails due to unique constrains volation, reset EntityManager to be able continue with next insertions
+                $fleetsTable->addRow(
+                    [
+                        $fleet->getId(),
+                        isset($truck) ? $truck->getPlateNo() :"N/A",
+                        isset($trailer) ? $trailer->getPlateNo() :"N/A",
+                        isset($firstDriver) ? $firstDriver->getFullName() :"N/A",
+                        isset($secondDriver) ? $secondDriver->getFullName() :"N/A",
+                        $randomStatus->name,
+                    ]
+                );
+
+            } catch (\Exception $e) { // if record insert fails due to unique constraint volation, reset EntityManager to be able continue with next insertions
                 $this->managerRegistry->resetManager();
                 $this->entityManager->flush();
                 $this->entityManager->commit();
             }
         }
-        $fleetsTable->setHeaders(['Truck','Trailer', 'First driver','Second driver', 'status']);
+        $fleetsTable->setHeaders(['fleet #', 'Truck','Trailer', 'First driver','Second driver', 'status']);
         $fleetsTable->render();
 
         $statusDescriptonTable = new Table($cout);

@@ -33,6 +33,9 @@ class Fleet
     #[ORM\JoinColumn(name:"trailer_id",referencedColumnName:"id", nullable:false)]
     private Trailer $trailer;
 
+    #[ORM\OneToOne(targetEntity: 'Order', mappedBy:'fleet')]
+    private $order;
+
     public function getId(): ?int
     {
         return $this->id;

@@ -17,10 +17,10 @@ class Driver
     private ?int $id = null;
 
     #[ORM\Column(length: 128)]
-    private ?string $Name = null;
+    private ?string $name = null;
 
     #[ORM\Column(length: 128)]
-    private ?string $LastName = null;
+    private ?string $lastName = null;
 
     #[ORM\OneToOne(targetEntity: 'Fleet', mappedBy:'firstDriver')]
     private $firstDriver;
@@ -46,25 +46,30 @@ class Driver
 
     public function getName(): string
     {
-        return $this->Name;
+        return $this->name;
     }
 
-    public function setName(string $Name): static
+    public function setName(string $name): static
     {
-        $this->Name = $Name;
+        $this->name = $name;
 
         return $this;
     }
 
     public function getLastName(): string
     {
-        return $this->LastName;
+        return $this->lastName;
     }
 
-    public function setLastName(string $LastName): static
+    public function setLastName(string $lastName): static
     {
-        $this->LastName = $LastName;
+        $this->lastName = $lastName;
 
         return $this;
+    }
+
+    public function getFullName(): string
+    {
+        return implode(" ", [$this->name, $this->lastName]);
     }
 }

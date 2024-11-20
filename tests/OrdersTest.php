@@ -3,19 +3,17 @@
 namespace App\Tests;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\DataFixtures\TruckFixures;
-use App\Repository\FleetRepository;
+use App\Repository\OrderRepository;
 use Symfony\Component\Serializer\SerializerInterface;
-
-
 
 class OrdersTest extends ApiTestCase
 {
 
     public function testOrdersList(): void
     {
-        $fleetRepository = static::getContainer()->get(FleetRepository::class);
+        $orderRepository = static::getContainer()->get(OrderRepository::class);
 
-        $fleets = $fleetRepository->getActiveList();
+        $fleets = $orderRepository->getActiveList();
 
         $serializer = static::getContainer()->get(SerializerInterface::class);
 
