@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\FleetRepository;
+use App\Service\FleetService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,21 +11,21 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 class FleetsController extends AbstractController
 {
-    private FleetRepository $fleetRepository;
+    private FleetService $fleetService;
     private $serializer;
 
     function __construct(
-        FleetRepository $fleetRepository,
+        FleetService $fleetService,
         SerializerInterface $serializer,
     ) {
-        $this->fleetRepository = $fleetRepository;
+        $this->fleetService = $fleetService;
         $this->serializer = $serializer;
     }
 
     #[Route('/fleets', name: 'app_fleets')]
     public function index(): JsonResponse
     {
-        $fleets = $this->fleetRepository->getList();
+        $fleets = $this->fleetService->getList();
 
         return New JsonResponse(
             $this->serializer->serialize($fleets, 'json'),
