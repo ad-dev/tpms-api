@@ -16,7 +16,7 @@ class TruckRepository extends ServiceEntityRepository
         parent::__construct($registry, Truck::class);
     }
 
-    public function geTotalCount(): int
+    public function getTotalCount(): int
     {
         return $this->createQueryBuilder('t')->select('COUNT(1)')->getQuery()->getSingleScalarResult();
 

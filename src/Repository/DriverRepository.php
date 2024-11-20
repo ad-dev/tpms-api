@@ -17,7 +17,7 @@ class DriverRepository extends ServiceEntityRepository
     }
 
 
-    public function geTotalCount(): int
+    public function getTotalCount(): int
     {
         return $this->createQueryBuilder('d')->select('COUNT(1)')->getQuery()->getSingleScalarResult();
 

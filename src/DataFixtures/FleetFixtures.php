@@ -38,7 +38,7 @@ class FleetFixtures extends Fixture implements DependentFixtureInterface
         $truckRepository = $manager->getRepository(Truck::class);
         $trailerRepository = $manager->getRepository(Trailer::class);
 
-        $driversTotal = $driverRepository->geTotalCount();
+        $driversTotal = $driverRepository->getTotalCount();
 
         for($i = 0; $i < $driversTotal; $i++) {
             $firstDriver = null;
