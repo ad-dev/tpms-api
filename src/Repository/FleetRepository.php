@@ -38,7 +38,6 @@ class FleetRepository extends ServiceEntityRepository
    public function getActiveList(): array
    {
        return $this->createQueryBuilder('f')
-           ->setMaxResults(10)
            ->innerJoin('f.truck', 'trucks')
            ->innerJoin('f.trailer', 'trailers')
            ->leftJoin('f.firstDriver', 'first_driver')
