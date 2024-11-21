@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Controller;
+namespace App\ApiResource;
 
 use App\Service\TrailerService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 
-
-class TrailersController extends AbstractController
+#[ApiResource(operations:[new GetCollection(controller:self::class)])]
+class Trailer extends AbstractController
 {
     private TrailerService $trailerService;
     private $serializer;
@@ -21,12 +23,16 @@ class TrailersController extends AbstractController
         $this->trailerService = $trailerService;
         $this->serializer = $serializer;
     }
-    #[Route('/trailers', name: 'app_trailers')]
+
     public function index(): JsonResponse
     {
         $trailers = $this->trailerService->getAll();
         return New JsonResponse(
             $this->serializer->serialize($trailers, 'json'),
             200, [], true);
+    }
+
+    public function __invoke(): JsonResponse{
+        return $this->index();
     }
 }

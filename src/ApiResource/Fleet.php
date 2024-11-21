@@ -1,15 +1,17 @@
 <?php
 
-namespace App\Controller;
+namespace App\ApiResource;
 
 use App\Service\FleetService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 
-class FleetsController extends AbstractController
+#[ApiResource(operations:[new GetCollection(controller:self::class)])]
+class Fleet extends AbstractController
 {
     private FleetService $fleetService;
     private $serializer;
@@ -22,7 +24,7 @@ class FleetsController extends AbstractController
         $this->serializer = $serializer;
     }
 
-    #[Route('/fleets', name: 'app_fleets')]
+
     public function index(): JsonResponse
     {
         $fleets = $this->fleetService->getList();
@@ -31,4 +33,8 @@ class FleetsController extends AbstractController
             $this->serializer->serialize($fleets, 'json'),
             200, [], true);
     }
+    function __invoke(): JsonResponse{
+        return $this->index();
+    }
+
 }

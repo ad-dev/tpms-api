@@ -9,6 +9,7 @@ use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: DriverRepository::class)]
 #[UniqueConstraint(name: "name", columns: ["name","last_name"])]
+
 class Driver
 {
     #[ORM\Id]
