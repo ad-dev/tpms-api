@@ -48,6 +48,8 @@ run `make stop` to stop docker container
 
 `init_db` - creates db and runs migrations
 
+`reset_db` - drops db (deletes data.db file), deletes migrations
+
 `logs` - watches server logs
 
 `publish` - copy files from docker container to host (vendor/, composer.*, symphony.lock, phpunit.xml)
