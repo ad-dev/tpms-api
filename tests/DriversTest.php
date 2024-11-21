@@ -18,7 +18,7 @@ class DriversTest extends ApiTestCase
 
         $driversExpected = $serializer->serialize($drivers, 'json');
 
-        $response = static::createClient()->request('GET', '/drivers');
+        $response = static::createClient()->request('GET', '/api/drivers');
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals($driversExpected, $response->getContent());

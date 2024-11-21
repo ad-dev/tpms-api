@@ -22,7 +22,7 @@ class TrailersTest extends ApiTestCase
 
         $trailersExpected = $serializer->serialize($trailers, 'json');
 
-        $response = static::createClient()->request('GET', '/trailers');
+        $response = static::createClient()->request('GET', '/api/trailers');
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals($trailersExpected, $response->getContent());

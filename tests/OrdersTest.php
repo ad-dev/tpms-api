@@ -19,7 +19,7 @@ class OrdersTest extends ApiTestCase
 
         $fleetsExpected = $serializer->serialize($fleets, 'json');
 
-        $response = static::createClient()->request('GET', '/orders');
+        $response = static::createClient()->request('GET', '/api/orders');
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals($fleetsExpected, $response->getContent());

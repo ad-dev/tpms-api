@@ -21,7 +21,7 @@ class TrucksTest extends ApiTestCase
 
         $trucksExpected = $serializer->serialize($trucks, 'json');
 
-        $response = static::createClient()->request('GET', '/trucks');
+        $response = static::createClient()->request('GET', '/api/trucks');
 
         $this->assertResponseIsSuccessful();
         $this->assertEquals($trucksExpected, $response->getContent());
